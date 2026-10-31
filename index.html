@@ -114,8 +114,10 @@ p { margin: 0; }
 .highlight p { margin-top: 8px; color: var(--muted); }
 
 /* Фото */
-.gallery { display: grid; gap: 8px; grid-template-columns: repeat(2, 1fr); }
-.gallery a { display: block; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--surface-2); }
+/* Ровная сетка: у всех плиток одна высота, фото обрезается по плитке (вертикальные не ломают строки) */
+.gallery { display: grid; gap: 8px; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+.gallery a { display: block; border-radius: 10px; overflow: hidden; background: var(--surface-2); }
+.gallery.odd a:first-child { grid-column: span 2; grid-row: span 2; }
 .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
 .gallery a:hover img { transform: scale(1.04); }
 
@@ -153,8 +155,9 @@ p { margin: 0; }
 @media (min-width: 720px) {
   .facts { grid-template-columns: repeat(3, 1fr); }
   .price-groups, .highlights, .reviews { grid-template-columns: repeat(2, 1fr); }
-  .gallery { grid-template-columns: repeat(4, 1fr); }
-  .gallery a:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 180px; }
+  .gallery.odd a:first-child { grid-column: auto; grid-row: auto; }
+  .gallery.big a:first-child { grid-column: span 2; grid-row: span 2; }
   .topbar-phone { display: inline-flex; }
 }
 @media (min-width: 960px) {
@@ -218,7 +221,7 @@ p { margin: 0; }
 
 <section class="section" id="photos" style="padding-top:0"><div class="wrap">
   <div class="section-head"><h2>Фото</h2><a class="link" href="https://2gis.ru/togliatti/firm/70000001110526007/tab/photos" target="_blank" rel="noopener">Все фото в 2ГИС</a></div>
-  <div class="gallery">
+  <div class="gallery odd">
     <a href="img/02.jpg" target="_blank" rel="noopener"><img src="img/02.jpg" alt="Чёрный автомобиль на четырёхстоечном подъёмнике в светлом боксе, рядом мастера" loading="lazy" referrerpolicy="no-referrer"></a>
     <a href="img/03.jpg" target="_blank" rel="noopener"><img src="img/03.jpg" alt="Автомобиль, поднятый на подъёмнике, вид сзади" loading="lazy" referrerpolicy="no-referrer"></a>
     <a href="img/04.jpg" target="_blank" rel="noopener"><img src="img/04.jpg" alt="Просторный бокс с подъёмниками, на одном из них поднят автомобиль" loading="lazy" referrerpolicy="no-referrer"></a>
